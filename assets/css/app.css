@@ -336,7 +336,7 @@ td small { max-width: 260px; margin-top: 3px; color: var(--muted); font-size: .6
 .badge-diagnosing { color: #6842a0; background: #eee6fb; }
 .badge-in-repair, .badge-awaiting-parts, .badge-equipment-under-repair { color: #8a4300; background: #ffe8ce; }
 .badge-ready-for-release { color: #255d97; background: #e1efff; }
-.badge-completed, .badge-equipment-in-service { color: #136248; background: #ddf4ea; }
+.badge-completed, .badge-equipment-completed, .badge-equipment-in-service { color: #136248; background: #ddf4ea; }
 .badge-cancelled, .badge-equipment-retired { color: #666b73; background: #eceef1; }
 .badge-equipment-for-replacement { color: #a12431; background: #fbe2e5; }
 .priority { min-height: 23px; padding: 3px 8px; }

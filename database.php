@@ -66,7 +66,7 @@ function ensure_schema(PDO $pdo): void
             assigned_to VARCHAR(150) NULL,
             department VARCHAR(120) NULL,
             location VARCHAR(150) NULL,
-            status ENUM('In Service','Under Repair','For Replacement','Retired') NOT NULL DEFAULT 'In Service',
+            status ENUM('In Service','Under Repair','Completed','For Replacement','Retired') NOT NULL DEFAULT 'In Service',
             purchase_date DATE NULL,
             notes TEXT NULL,
             created_by INT UNSIGNED NULL,
@@ -136,6 +136,32 @@ function ensure_schema(PDO $pdo): void
 
     foreach ($statements as $statement) {
         $pdo->exec($statement);
+    }
+
+    $equipmentStatusColumn = $pdo->query("SHOW COLUMNS FROM equipment LIKE 'status'")->fetch();
+    if ($equipmentStatusColumn && !str_contains((string) $equipmentStatusColumn['Type'], "'Completed'")) {
+        $pdo->exec(
+            "ALTER TABLE equipment
+             MODIFY status ENUM('In Service','Under Repair','Completed','For Replacement','Retired')
+             NOT NULL DEFAULT 'In Service'"
+        );
+        $pdo->exec(
+            "UPDATE equipment e
+             SET e.status = 'Completed'
+             WHERE e.status = 'In Service'
+               AND NOT EXISTS (
+                   SELECT 1 FROM repair_requests active
+                   WHERE active.equipment_id = e.id
+                     AND active.status NOT IN ('Completed','Cancelled')
+               )
+               AND (
+                   SELECT latest.status
+                   FROM repair_requests latest
+                   WHERE latest.equipment_id = e.id
+                   ORDER BY latest.updated_at DESC, latest.id DESC
+                   LIMIT 1
+               ) = 'Completed'"
+        );
     }
     $ready = true;
 }

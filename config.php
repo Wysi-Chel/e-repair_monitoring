@@ -24,7 +24,7 @@ const REPAIR_STATUSES = [
 
 const REPAIR_PRIORITIES = ['Low', 'Normal', 'High', 'Critical'];
 const ISSUE_CATEGORIES = ['Hardware', 'Software', 'Network', 'Peripheral', 'Preventive Maintenance', 'Other'];
-const EQUIPMENT_STATUSES = ['In Service', 'Under Repair', 'For Replacement', 'Retired'];
+const EQUIPMENT_STATUSES = ['In Service', 'Under Repair', 'Completed', 'For Replacement', 'Retired'];
 const EQUIPMENT_TYPES = [
     'Desktop Computer',
     'Laptop',

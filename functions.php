@@ -183,9 +183,12 @@ function sync_equipment_repair_status(PDO $pdo, ?int $equipmentId, string $repai
         );
         $open->execute([$equipmentId]);
         if ((int) $open->fetchColumn() === 0) {
+            $equipmentStatus = $repairStatus === 'Completed' ? 'Completed' : 'In Service';
             $pdo->prepare(
-                "UPDATE equipment SET status = 'In Service', updated_by = ?, updated_by_name = ? WHERE id = ? AND status = 'Under Repair'"
-            )->execute([user_id(), user_name(), $equipmentId]);
+                "UPDATE equipment
+                 SET status = ?, updated_by = ?, updated_by_name = ?
+                 WHERE id = ? AND status NOT IN ('For Replacement','Retired')"
+            )->execute([$equipmentStatus, user_id(), user_name(), $equipmentId]);
         }
         return;
     }

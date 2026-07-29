@@ -114,7 +114,6 @@ require __DIR__ . '/includes/header.php';
             <div class="card-header compact"><div><span class="section-kicker">Asset record</span><h2><?= e($repair['asset_tag']) ?></h2></div></div>
             <div class="card-body summary-list">
                 <div><span>Assigned to</span><strong><?= e($repair['assigned_to'] ?: 'Unassigned') ?></strong></div>
-                <div><span>Location</span><strong><?= e($repair['location'] ?: '—') ?></strong></div>
                 <div><span>Equipment status</span><strong><?= e($repair['equipment_status']) ?></strong></div>
                 <a class="btn btn-secondary btn-block" href="<?= url('equipment_form.php?id=' . (int) $repair['equipment_id']) ?>">Open equipment record</a>
             </div>

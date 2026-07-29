@@ -69,10 +69,6 @@ require __DIR__ . '/includes/header.php';
                         <input id="department" name="department" maxlength="120" value="<?= e($item['department'] ?? '') ?>">
                     </div>
                     <div class="form-group">
-                        <label for="location">Location</label>
-                        <input id="location" name="location" maxlength="150" value="<?= e($item['location'] ?? '') ?>" placeholder="Office, floor, or branch">
-                    </div>
-                    <div class="form-group">
                         <label for="status">Equipment status <span>*</span></label>
                         <select id="status" name="status" required>
                             <?php foreach (EQUIPMENT_STATUSES as $option): ?><option value="<?= e($option) ?>" <?= ($item['status'] ?? 'In Service') === $option ? 'selected' : '' ?>><?= e($option) ?></option><?php endforeach; ?>
