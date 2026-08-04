@@ -71,7 +71,7 @@ require __DIR__ . '/includes/header.php';
                     <div class="form-group">
                         <label for="status">Equipment status <span>*</span></label>
                         <select id="status" name="status" required>
-                            <?php foreach (EQUIPMENT_STATUSES as $option): ?><option value="<?= e($option) ?>" <?= ($item['status'] ?? 'In Service') === $option ? 'selected' : '' ?>><?= e($option) ?></option><?php endforeach; ?>
+                            <?php foreach (EQUIPMENT_STATUSES as $option): ?><option value="<?= e($option) ?>" <?= ($item['status'] ?? 'In Use') === $option ? 'selected' : '' ?>><?= e($option) ?></option><?php endforeach; ?>
                         </select>
                     </div>
                     <div class="form-group span-2">

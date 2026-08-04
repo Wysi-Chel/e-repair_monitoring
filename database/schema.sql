@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS equipment (
     assigned_to VARCHAR(150) NULL,
     department VARCHAR(120) NULL,
     location VARCHAR(150) NULL,
-    status ENUM('In Service','Under Repair','Completed','For Replacement','Retired') NOT NULL DEFAULT 'In Service',
+    status ENUM('In Use','Not in Use','Retired') NOT NULL DEFAULT 'In Use',
     purchase_date DATE NULL,
     notes TEXT NULL,
     created_by INT UNSIGNED NULL,

@@ -35,7 +35,7 @@ $stmt = $pdo->prepare(
      LEFT JOIN repair_requests r ON r.equipment_id = e.id
      $whereSql
      GROUP BY e.id
-     ORDER BY FIELD(e.status, 'Under Repair','For Replacement','Completed','In Service','Retired'), e.asset_tag"
+     ORDER BY FIELD(e.status, 'Not in Use','In Use','Retired'), e.asset_tag"
 );
 $stmt->execute($params);
 $equipment = $stmt->fetchAll();

@@ -75,7 +75,6 @@ try {
         ]);
         $id = (int) $pdo->lastInsertId();
         repair_history($pdo, $id, 'REQUEST_CREATED', $ticketNo . ' was created.', null, 'Submitted', 'Issue reported by ' . $reportedBy . '.');
-        sync_equipment_repair_status($pdo, $equipmentId, 'Submitted');
         $pdo->commit();
         flash('success', $ticketNo . ' was created successfully.');
         redirect(url('repair_view.php?id=' . $id));
@@ -155,11 +154,6 @@ try {
         ':updated_by_name' => user_name(),
         ':id' => $id,
     ]);
-
-    if ((int) ($old['equipment_id'] ?? 0) !== (int) ($equipmentId ?? 0)) {
-        sync_equipment_repair_status($pdo, (int) ($old['equipment_id'] ?? 0) ?: null, 'Cancelled');
-    }
-    sync_equipment_repair_status($pdo, $equipmentId, $status);
 
     if ($status !== $old['status']) {
         repair_history(

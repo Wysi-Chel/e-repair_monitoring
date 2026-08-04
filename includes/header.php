@@ -18,7 +18,9 @@ $user = current_user();
     <title><?= e($pageTitle) ?> · <?= e(APP_NAME) ?></title>
     <link rel="icon" type="image/png" href="<?= PORTAL_BASE ?>/assets/img/favicon.png">
     <meta name="theme-color" content="#bf1f2f">
+    <script src="<?= PORTAL_BASE ?>/assets/js/theme-init.js"></script>
     <link rel="stylesheet" href="<?= url('assets/css/app.css') ?>">
+    <script src="<?= PORTAL_BASE ?>/assets/js/theme.js" defer></script>
     <script src="<?= url('assets/js/app.js') ?>" defer></script>
 </head>
 <body>
@@ -48,13 +50,24 @@ $user = current_user();
             </a>
         </nav>
 
-        <div class="sidebar-user">
-            <span class="user-avatar"><?= e(strtoupper(substr((string) ($user['full_name'] ?? 'U'), 0, 1))) ?></span>
-            <div>
-                <strong><?= e($user['full_name'] ?? 'Portal user') ?></strong>
-                <small><?= e($user['role'] ?? 'User') ?></small>
+        <div class="sidebar-footer">
+            <div class="sidebar-theme-control">
+                <span class="sidebar-theme-label">Appearance</span>
+                <button class="micei-theme-toggle theme-switch" type="button" data-theme-toggle aria-pressed="false" aria-label="Switch to dark mode" title="Switch to dark mode">
+                    <span class="theme-switch-icon theme-switch-sun"><svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></span>
+                    <span class="theme-switch-icon theme-switch-moon"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M20.5 15.4A9 9 0 0 1 8.6 3.5 9 9 0 1 0 20.5 15.4Z"/></svg></span>
+                    <span class="theme-switch-thumb" aria-hidden="true"></span>
+                    <span class="sr-only" data-theme-label>Dark mode</span>
+                </button>
             </div>
-            <a href="<?= PORTAL_BASE ?>/systems.php">Back to systems</a>
+            <div class="sidebar-user">
+                <span class="user-avatar"><?= e(strtoupper(substr((string) ($user['full_name'] ?? 'U'), 0, 1))) ?></span>
+                <div>
+                    <strong><?= e($user['full_name'] ?? 'Portal user') ?></strong>
+                    <small><?= e($user['role'] ?? 'User') ?></small>
+                </div>
+                <a href="<?= PORTAL_BASE ?>/systems.php">Back to systems</a>
+            </div>
         </div>
     </aside>
 

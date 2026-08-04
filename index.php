@@ -19,9 +19,9 @@ $stats = $pdo->query(
 $equipmentStats = $pdo->query(
     "SELECT
         COUNT(*) AS total,
-        SUM(status = 'In Service') AS in_service,
-        SUM(status = 'Under Repair') AS under_repair,
-        SUM(status = 'For Replacement') AS replacement
+        SUM(status = 'In Use') AS in_use,
+        SUM(status = 'Not in Use') AS not_in_use,
+        SUM(status = 'Retired') AS retired
      FROM equipment"
 )->fetch();
 
@@ -114,12 +114,12 @@ require __DIR__ . '/includes/header.php';
         </section>
 
         <section class="card equipment-summary">
-            <div class="card-header compact"><div><span class="section-kicker">Assets</span><h2>Equipment health</h2></div></div>
+            <div class="card-header compact"><div><span class="section-kicker">Assets</span><h2>Equipment condition</h2></div></div>
             <div class="equipment-total"><strong><?= (int) ($equipmentStats['total'] ?? 0) ?></strong><span>registered equipment</span></div>
             <div class="mini-stats">
-                <a href="<?= url('equipment.php?status=In+Service') ?>"><b><?= (int) ($equipmentStats['in_service'] ?? 0) ?></b><span>In service</span></a>
-                <a href="<?= url('equipment.php?status=Under+Repair') ?>"><b><?= (int) ($equipmentStats['under_repair'] ?? 0) ?></b><span>Under repair</span></a>
-                <a href="<?= url('equipment.php?status=For+Replacement') ?>"><b><?= (int) ($equipmentStats['replacement'] ?? 0) ?></b><span>For replacement</span></a>
+                <a href="<?= url('equipment.php?status=In+Use') ?>"><b><?= (int) ($equipmentStats['in_use'] ?? 0) ?></b><span>In use</span></a>
+                <a href="<?= url('equipment.php?status=Not+in+Use') ?>"><b><?= (int) ($equipmentStats['not_in_use'] ?? 0) ?></b><span>Not in use</span></a>
+                <a href="<?= url('equipment.php?status=Retired') ?>"><b><?= (int) ($equipmentStats['retired'] ?? 0) ?></b><span>Retired</span></a>
             </div>
         </section>
 

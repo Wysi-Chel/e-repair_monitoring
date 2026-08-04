@@ -19,7 +19,7 @@ $serialNumber = trim((string) ($_POST['serial_number'] ?? ''));
 $assignedTo = trim((string) ($_POST['assigned_to'] ?? ''));
 $department = trim((string) ($_POST['department'] ?? ''));
 $location = trim((string) ($_POST['location'] ?? ''));
-$status = trim((string) ($_POST['status'] ?? 'In Service'));
+$status = trim((string) ($_POST['status'] ?? 'In Use'));
 $purchaseDate = trim((string) ($_POST['purchase_date'] ?? ''));
 $notes = trim((string) ($_POST['notes'] ?? ''));
 
